@@ -1,6 +1,10 @@
 # EyeArt Streamline
 
 ### What?
+Once you have exported a new set of EyeArt reports into .csv, run one line of code from your command-line in order to:
+1) Update your consult letters according to the retinal imaging results;
+2) Update the reports log;
+3) Prepare a spreadsheet that is ready to be input into REDCap (patient-identifying features are removed).
 
 ### Getting started
 
@@ -11,7 +15,8 @@
 └───Eyenuk Reports
      ├───PDF_Reports
      ├───Processing Log
-     │      └─── BioPortal-Consultletters_DATA_LABELS_*.csv 
+     │      └─── BioPortal-Consultletters_DATA_LABELS_*.csv
+     │      └─── Reports Processing Log.xlsx
      ├───Results_CSV
      │      └─── EyenukAnalysisResults_*.csv 
      ├───environment.yml
