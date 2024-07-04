@@ -1,4 +1,5 @@
 # ========= Import =========
+
 import pandas as pd
 import os
 import numpy as np
@@ -8,7 +9,8 @@ import shutil
 import re
 
 # ========= Select files =========
-main_dir = 'C:\\Users\\nadia.blostein\\Documents\\EyeArt_test\\Eyenuk Reports'
+
+main_dir = 'path/to/Eyenuk Reports' # 'C:\\Users\\nadia.blostein\\Documents\\EyeArt_test\\Eyenuk Reports'
 
 # Function to extract the date from the file name
 def extract_date(file_name, type='eyenuk_results'):
@@ -42,20 +44,6 @@ latest = max(consult_letters_dict.values())
 for key, value in consult_letters_dict.items():
     if value == latest: consult_letters = key
 
-# ========= Set working dir =========
-# Set working directory (e.g. `EyeArt_Test`) such that it has the following structure:
-# ├───Eyenuk Images  
-# │   └──last-name_first-name_patient-ID  
-# │       └───Date  
-# │         └─── 4 images (.jpg)  
-# └───Eyenuk Reports
-#     ├───PDF_Reports
-#     ├───Processing Log
-#     │      └─── BioPortal-Consultletters_DATA_LABELS_*.csv 
-#     ├───Results_CSV
-#     │      └─── EyenukAnalysisResults_*.csv 
-#     └───streamline.ipynb
-
 # ========= Read spreadsheets =========
 
 df_eyenuk_results = pd.read_csv(f"{main_dir}/Results_CSV/{eyenuk_results}")
@@ -81,9 +69,8 @@ if not os.path.exists(dest_2):
 df_consult_letters_final = df_consult_letters.copy()
 df_consult_letters_final['PatientName'] = (df_consult_letters_final['First name:'] + ' ' + df_consult_letters_final['Last name:']).str.title()
 df_merged = pd.merge(df_consult_letters_final, df_eyenuk_results, on='PatientName', how='left')
-df_consult_letters_final['Results'] = df_merged['PatientExamResult'].apply(lambda x: 'Pos' if x in ['Positive','Positive for vtDR', 'Ungradable'] else '')
+df_consult_letters_final['Results'] = df_merged['PatientExamResult'].apply(lambda x: 'Pos' if x in ['Positive','Positive for vtDR', 'Positive for rDR', 'Ungradable'] else '')
 df_consult_letters_final.to_csv(f"Processing Log/{consult_letters}", index = False)
-
 
 # ========= Update the reports log =========
 
