@@ -40,3 +40,9 @@ conda activate eyeart_env
 python eyeart_streamline.py
 ```
 
+### Note: Variable Naming Conventions
+
+`Eyenuk Reports\Results_CSV\EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`:
+* `PatientID`: MRN:
+
+
