@@ -1,15 +1,15 @@
 # EyeArt Streamline
 
-### What?
-Once your EyeArt reports have been exported into a nice and clean .csv (`Results_CSV/EyenukAnalysisResults_*.csv`), it only takes one line of code to:
+## What?
+Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and clean .csv (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`), it only takes one line of code to:
 
-1) Update your consult letters to send out (`Processing Log/BioPortal-Consultletters_DATA_LABELS_*.csv`) according to the retinal imaging results;
+1) Update your data file containing information for ophthamology consult letter referrals (`Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`);
    
-2) Update your reports log (`Processing Log/Reports Processing Log.xlsx`);
+2) Update your Eyenuk analysis result tracker (`Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`);
    
-3) Prepare a spreadsheet that can be input into REDCap (patient-identifying features removed) (`Results_CSV/EyenukAnalysisResults_*-REDCap.csv`).
+3) Generate a data file that can safely be input into REDCap (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs-REDCap.csv`).
 
-### Getting started
+## Getting started
 
 1. Download [Anaconda Distribution](https://www.anaconda.com/download/success) for Windows.
 
@@ -40,9 +40,22 @@ conda activate eyeart_env
 python eyeart_streamline.py
 ```
 
-### Note: Variable Naming Conventions
+## Note: A Few Variable Naming Conventions
 
-`Eyenuk Reports\Results_CSV\EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`:
-* `PatientID`: MRN:
+### Dataframe containing Eyenuk analysis results
+#### `Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`
+* `PatientID`: MRN:???????.? RAMQ:????????????
 
+### Dataframe containing information for consult letter referrals
+**File**: `Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`
 
+_Variables_:
+* `Record ID`: number assigned to patient for the study for anonymization purposes.
+* `RAMQ Number`: ????????????
+* `Medical Record Number (MRN)`: ???????.?
+
+### Eyenuk analysis result tracker**
+**File**: `Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`
+
+_Variables_:
+* `Subject Unique Number (00-000)`: same as `Record ID` above (number assigned to patient for the study for anonymization purposes).
