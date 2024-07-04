@@ -43,11 +43,13 @@ python eyeart_streamline.py
 ## Note: A Few Variable Naming Conventions
 
 ### Dataframe containing Eyenuk analysis results
-#### `Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`
+_File_: `Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`
+
+_Variables_:
 * `PatientID`: MRN:???????.? RAMQ:????????????
 
 ### Dataframe containing information for consult letter referrals
-**File**: `Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`
+_File_: `Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`
 
 _Variables_:
 * `Record ID`: number assigned to patient for the study for anonymization purposes.
@@ -55,7 +57,7 @@ _Variables_:
 * `Medical Record Number (MRN)`: ???????.?
 
 ### Eyenuk analysis result tracker**
-**File**: `Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`
+_File_: `Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`
 
 _Variables_:
 * `Subject Unique Number (00-000)`: same as `Record ID` above (number assigned to patient for the study for anonymization purposes).
