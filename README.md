@@ -28,10 +28,17 @@ Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and cl
 
 3. Open [Visual Studio Code](https://code.visualstudio.com/) through the Anaconda Navigator.
 
-4. Navigate to your working directory (`Eyenuk Reports`) and set up the following Conda environment:
+4. Navigate to your working directory (`Eyenuk Reports`) and set up the following Conda environment on
+> MacOS:
 ```
 cd PATH/TO/Eyenuk Reports
-conda create —name eyeart_env python=3.10 -f environment.yml
+conda env create -f environment.yml
+conda activate eyeart_env
+```
+> Microsoft:
+```
+cd PATH/TO/Eyenuk Reports
+conda create —name eyeart_env python=3.10 -f environment_microsoft.yml
 conda activate eyeart_env
 ```
 
