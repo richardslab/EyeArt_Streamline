@@ -1,7 +1,7 @@
 # EyeArt Streamline
 
 ## What?
-Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and clean .csv (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`), it only takes one line of code to:
+Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and clean .csv (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv`), it only takes one line of code to:
 
 1) Update your data file containing information for ophthamology consult letter referrals (`Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`);
    
@@ -17,7 +17,7 @@ Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and cl
 ```
 └───Eyenuk Reports
      ├───Processing Log
-     │      └─── DDMMMYYYY_DATA_LABELS_YYYY-MM-DD_NNNN.csv # PREV: BioPortal-Consultletters_DATA_LABELS_*.csv
+     │      └─── DDMMMYYYY_DATA_LABELS_YYYY-MM-DD_NNNN.csv # PREV: BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv
      │      └─── Reports Processing Log.xlsx
      ├───Results_CSV
      │      └─── EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv 
@@ -42,22 +42,19 @@ python eyeart_streamline.py
 
 ## Note: A Few Variable Naming Conventions
 
-### Dataframe containing Eyenuk analysis results
-_File_: `Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs.csv`
+### `Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv`
 
-_Variables_:
-* `PatientID`: MRN:???????.? RAMQ:????????????
+_Columns_:
+* `PatientID`: MRN:####### RAMQ:############
 
-### Dataframe containing information for consult letter referrals
-_File_: `Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`
+### `Eyenuk Reports/Processing Log/DDMMMYYYY_DATA_LABELS_YYYY-MM-DD_NNNN.csv`
 
-_Variables_:
+_Columns_:
 * `Record ID`: number assigned to patient for the study for anonymization purposes.
-* `RAMQ Number`: ????????????
-* `Medical Record Number (MRN)`: ???????.?
+* `RAMQ Number`: ############
+* `Medical Record Number (MRN)`: #######
 
-### Eyenuk analysis result tracker**
-_File_: `Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`
+### `Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`
 
-_Variables_:
+_Columns_:
 * `Subject Unique Number (00-000)`: same as `Record ID` above (number assigned to patient for the study for anonymization purposes).
