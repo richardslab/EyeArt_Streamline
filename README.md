@@ -16,12 +16,11 @@ Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and cl
 2. Set up your working directory (`Eyenuk Reports`):
 ```
 └───Eyenuk Reports
-     ├───PDF_Reports
      ├───Processing Log
-     │      └─── BioPortal-Consultletters_DATA_LABELS_*.csv
+     │      └─── DDMMMYYYY_DATA_LABELS_YYYY-MM-DD_NNNN.csv # PREV: BioPortal-Consultletters_DATA_LABELS_*.csv
      │      └─── Reports Processing Log.xlsx
      ├───Results_CSV
-     │      └─── EyenukAnalysisResults_*.csv 
+     │      └─── EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv 
      ├───environment.yml
      └───eyeart_streamline.py
 ```
