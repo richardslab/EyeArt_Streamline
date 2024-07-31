@@ -1,11 +1,11 @@
 # EyeArt Streamline
 
 ## What?
-Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and clean .csv (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv`), it only takes one line of code to:
+Once your EyeArt analysis results have been exported into a nice and clean .csv (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv`), it only takes one line of code to:
 
-1) Update your data file containing information for ophthamology consult letter referrals (`Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`);
+1) Update your spreadsheet for ophthamology consultation referrals letters (`Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`);
    
-2) Update your Eyenuk analysis result tracker (`Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`);
+2) Update your EyeArt analysis result tracker (`Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`) (and duplicate the previous copy as `Eyenuk Reports/Processing Log/Reports Processing Log-initial_file_YYYY-MM-DD.xlsx`);
    
 3) Generate a data file that can safely be input into REDCap (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs-REDCap.csv`).
 
@@ -20,11 +20,12 @@ Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and cl
      │      └─── environment.yml
      │      └─── eyeart_streamline.py
      ├───Processing Log
-     │      └─── DDMMMYYYY_DATA_LABELS_YYYY-MM-DD_NNNN.csv
+     │      └─── DDMMMYYYYs_DATA_LABELS_YYYY-MM-DD_NNNN.csv
      │      └─── Reports Processing Log.xlsx
      └───Results_CSV
             └─── EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv 
 ```
+> _PS: [automating directory tree generation](https://tree.nathanfriend.io)_
 
 3. Open [Visual Studio Code](https://code.visualstudio.com/) through the Anaconda Navigator.
 
