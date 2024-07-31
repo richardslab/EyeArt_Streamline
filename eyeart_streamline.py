@@ -70,9 +70,12 @@ if not os.path.exists(dest_2):
 # ========= Update Spreadsheet For Ophthamology Consultation Referrals Letters =========
     # -> Sets positive or ungradable results to "Pos" in the "PatientExamResult" column
 
+MRN_list = []
+for val in df_eyenuk_results['PatientID']: MRN_list.append(float(val.split(' ')[0].split('MRN:')[1]))
+df_eyenuk_results['Medical Record Number (MRN):'] = MRN_list
+
 df_consult_letters_final = df_consult_letters.copy()
-df_consult_letters_final['PatientName'] = (df_consult_letters_final['First name:'] + ' ' + df_consult_letters_final['Last name:']).str.title()
-df_merged = pd.merge(df_consult_letters_final, df_eyenuk_results, on='PatientName', how='left')
+df_merged = pd.merge(df_consult_letters_final, df_eyenuk_results, on='Medical Record Number (MRN):', how='left')
 
 pos_vals = []
 for result in df_merged['PatientExamResult'].unique(): 
