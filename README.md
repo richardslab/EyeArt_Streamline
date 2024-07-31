@@ -16,13 +16,14 @@ Once your Eyenuk (Eyeart) analysis reports have been exported into a nice and cl
 2. Set up your working directory (`Eyenuk Reports`):
 ```
 └───Eyenuk Reports
+     ├───EyeArt_Streamline
+     │      └─── environment.yml
+     │      └─── eyeart_streamline.py
      ├───Processing Log
-     │      └─── DDMMMYYYY_DATA_LABELS_YYYY-MM-DD_NNNN.csv # PREV: BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv
+     │      └─── DDMMMYYYY_DATA_LABELS_YYYY-MM-DD_NNNN.csv
      │      └─── Reports Processing Log.xlsx
-     ├───Results_CSV
-     │      └─── EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv 
-     ├───environment.yml
-     └───eyeart_streamline.py
+     └───Results_CSV
+            └─── EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv 
 ```
 
 3. Open [Visual Studio Code](https://code.visualstudio.com/) through the Anaconda Navigator.
