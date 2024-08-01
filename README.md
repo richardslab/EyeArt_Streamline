@@ -9,6 +9,8 @@ Once your EyeArt analysis results have been exported into a nice and clean .csv 
    
 3) Generate a data file that can safely be input into REDCap (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs-REDCap.csv`).
 
+> Note: throughout `eyeart_streamline.py`, there are several checkpoints that print information to the screen to ensure everything is functioning as expected. Each checkpoint is preceded by a `### Sanity check X` comment.
+
 ## Getting started
 
 1. Download [Anaconda Distribution](https://www.anaconda.com/download/success) for Windows.
