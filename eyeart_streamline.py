@@ -138,6 +138,17 @@ for subj in df_merged_2['Record ID']:
         Test_Done_update += 1
 df_reports_log.loc[df_reports_log['Record ID'].isin(df_merged_2['Record ID']), 'Test Done'] = 'Y'
 
+df_reports_log['Comments'] = df_reports_log['Comments'].astype(str)
+for subj in Test_Done_update_list:
+    comment = str(df_reports_log.loc[df_reports_log['Record ID'] == subj]['Comments'].values[0])
+    prev_comment = "" if str(comment) == 'nan' else comment
+    new_comment = prev_comment
+    prev_date = f" (date: {df_reports_log.loc[df_reports_log['Record ID'] == subj]['Batch date'].values[0]})"
+    prev_result = str(df_reports_log.loc[df_reports_log['Record ID'] == subj]['Result'].values[0])
+    new_comment += f"Previous Result: {prev_result}\n"
+    new_comment += prev_date
+    df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Comments'] = new_comment
+
 ### Sanity Check 6
 Test_Done_final = df_reports_log[(df_reports_log['Test Done'] == 'Y') | (df_reports_log['Test Done'] == 'y')].shape[0]
 print(f"\nTest already done for {Test_Done_update} subject(s): {Test_Done_update_list}.", file = sanity_check)

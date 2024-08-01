@@ -9,7 +9,7 @@ Once your EyeArt analysis results have been exported into a nice and clean .csv 
    
 3) Generate a data file that can safely be input into REDCap (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYMMDD_HHhMMmSSs-REDCap.csv`).
 
-> Note: throughout `eyeart_streamline.py`, there are several checkpoints that print information to the screen to ensure everything is functioning as expected. Each checkpoint is preceded by a `### Sanity check X` comment.
+> Note: throughout `eyeart_streamline.py`, there are several checkpoints that append information to a textfile called (`EyeArt_Streamline/sanity_check_YYYY_MM_DD.txt`) so that you can ensure that everything is functioning as expected. Each checkpoint is preceded by a `### Sanity check X` comment in the `eyeart_streamline.py` code.
 
 ## Getting started
 
