@@ -50,7 +50,7 @@ for key, value in consult_letters_dict.items():
 # ========= Text File Where to 'Sanity Check' Outputs =========
 
 now = datetime.now().strftime("_%Y_%m_%d")
-sanity_check = open(f"sanity_check-{now}.txt", "a")
+sanity_check = open(f"sanity_check{now}.txt", "a")
 
 # ========= Load data =========
 
@@ -170,7 +170,7 @@ for subj in df_merged_2['Subject Unique Number (00-000)']:
     print(f"Previous result: {prev_result}\nNEW RESULT: {df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Result'].values[0]}", file = sanity_check)
     print(f"Previous physician: {prev_physician}\nNEW PHYSICIAN: {df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Physicians Name'].values[0]}", file = sanity_check)
 
-df_reports_log.to_excel("Processing Log/Reports Processing Log.xlsx", index = False)
+df_reports_log.to_excel(f"{main_dir}/Processing Log/Reports Processing Log.xlsx", index = False)
 
 # ========= Update EyeArt analysis results for REDCap =========
 
