@@ -38,6 +38,7 @@ conda env create -f environment.yml
 conda activate eyeart_env
 ```
 > Note: if using Windows, make sure to do this through the VS Code Command Prompt (not Powershell)
+> Note: if using Mac, you may need to: `conda install openpyxl`
 
 5. Run!
 ```
