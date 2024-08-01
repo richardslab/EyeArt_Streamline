@@ -53,6 +53,10 @@ df_eyenuk_results = pd.read_csv(f"{main_dir}/Results_CSV/{eyenuk_results}")
 df_consult_letters = pd.read_csv(f"{main_dir}/Processing Log/{consult_letters}")
 df_reports_log = pd.read_excel(f"{main_dir}/Processing Log/Reports Processing Log.xlsx")
 
+# ========= Sanity Checkpoint 1 =========
+
+print(f"\nYou have EyeArt Analysis Results for {df_eyenuk_results.shape[0]} NEW subjects!\n")
+
 # ========= Save Previous Copies =========
 
 now = datetime.now().strftime("_%Y_%m_%d")
