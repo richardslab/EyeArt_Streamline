@@ -100,7 +100,19 @@ for result in df_merged['PatientExamResult'].unique():
     elif "Ungradable" in str(result): pos_vals.append(result)
 
 df_consult_letters_final['Results'] = df_merged['PatientExamResult'].apply(lambda x: 'Pos' if x in pos_vals else '')
-df_consult_letters_final.to_csv(f"{main_dir}/Processing Log/{consult_letters}", index = False)
+df_consult_letters_final_to_sheet = df_consult_letters_final.copy()
+df_consult_letters_final_to_sheet.rename(columns={
+    'Record ID':'record_ID', 'Results':'Result',
+    'RAMQ Number:':'identifiers_ramq', 'Medical Record Number (MRN):':'identifiers_mrn',
+    'First name:':'identifiers_firstname', 'Last name:':'identifiers_lastname',
+    'Primary phone number:':'identifiers_primaryphone',
+    'Referring MD':'consent_md',
+    'Postal address:':'identifiers_street_number',
+    'City:':'identifiers_city', 'Province:':'identifiers_province',
+    'Postal code:':'identifiers_postal_code'
+    }, inplace=True)
+
+df_consult_letters_final_to_sheet.to_excel(f"{main_dir}/Processing Log/{datetime.now().strftime('%Y%m%d')}_DATA_LABELS.xlsx", index = False)
 
 ### Sanity Check 4
 print(f"\n\nPositive or ungradable results for {df_consult_letters_final[df_consult_letters_final['Results'] == 'Pos'].shape[0]} of your {df_eyenuk_results.shape[0]} new subjects.", file = sanity_check)
@@ -108,11 +120,10 @@ print(f"\n\nPositive or ungradable results for {df_consult_letters_final[df_cons
 # ========= Update 'Reports Processing Log.xlsx' (EyeArt analysis result tracker)  =========
 
 df_merged_2 = pd.merge(df_eyenuk_results, df_consult_letters_final, on='Medical Record Number (MRN):', how='left')
-df_merged_2.rename(columns={'Record ID': 'Subject Unique Number (00-000)'}, inplace=True)
 
 ### Sanity Check 5
 print("\n\n========= Update 'Test Done' & 'Report processed?' columns for 'Reports Processing Log.xlsx' (EyeArt analysis result tracker) =========", file = sanity_check)
-df_tmp_2 = pd.merge(df_merged_2, df_reports_log, on='Subject Unique Number (00-000)', how='inner')
+df_tmp_2 = pd.merge(df_merged_2, df_reports_log, on='Record ID', how='inner')
 print(f"\n{df_tmp_2.shape[0]} out of {df_eyenuk_results.shape[0]} new EyeArt Analysis Results subjects can be found in 'Reports Processing Log.xlsx'.\n", file = sanity_check)
 
 # === Update 'Test Done' column of 'Reports Processing Log.xlsx'
@@ -121,11 +132,11 @@ Test_Done_initial = df_reports_log[(df_reports_log['Test Done'] == 'Y') | (df_re
 Test_Done_update = 0
 Test_Done_update_list = []
 
-for subj in df_merged_2['Subject Unique Number (00-000)']:
-    if str(df_reports_log[df_reports_log['Subject Unique Number (00-000)'] == subj]['Test Done'].values[0]).upper() == 'Y':
+for subj in df_merged_2['Record ID']:
+    if str(df_reports_log[df_reports_log['Record ID'] == subj]['Test Done'].values[0]).upper() == 'Y':
         Test_Done_update_list.append(subj)
         Test_Done_update += 1
-df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'].isin(df_merged_2['Subject Unique Number (00-000)']), 'Test Done'] = 'Y'
+df_reports_log.loc[df_reports_log['Record ID'].isin(df_merged_2['Record ID']), 'Test Done'] = 'Y'
 
 ### Sanity Check 6
 Test_Done_final = df_reports_log[(df_reports_log['Test Done'] == 'Y') | (df_reports_log['Test Done'] == 'y')].shape[0]
@@ -137,11 +148,11 @@ print(f"Updated 'Test Done' column of 'Reports Processing Log.xlsx' for {Test_Do
 Report_Processed_initial = df_reports_log[(df_reports_log['Report processed?'] == 'Y') | (df_reports_log['Report processed?'] == 'y')].shape[0]
 Report_Processed_update = 0
 Report_Processed_update_list = []
-for subj in df_merged_2['Subject Unique Number (00-000)']:
-    if str(df_reports_log[df_reports_log['Subject Unique Number (00-000)'] == subj]['Report processed?'].values[0]).upper() == 'Y':
+for subj in df_merged_2['Record ID']:
+    if str(df_reports_log[df_reports_log['Record ID'] == subj]['Report processed?'].values[0]).upper() == 'Y':
         Report_Processed_update_list.append(subj)
         Report_Processed_update += 1
-df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'].isin(df_merged_2['Subject Unique Number (00-000)']), 'Report processed?'] = 'Y'
+df_reports_log.loc[df_reports_log['Record ID'].isin(df_merged_2['Record ID']), 'Report processed?'] = 'Y'
 
 ### Sanity Check 7
 Report_Processed_final = df_reports_log[(df_reports_log['Report processed?'] == 'Y') | (df_reports_log['Report processed?'] == 'y')].shape[0]
@@ -150,27 +161,27 @@ print(f"Updated 'Report processed?' column of 'Reports Processing Log.xlsx' for 
 
 print(f"\n\n========= Update 'Batch date', 'Result' and 'Physicians Name' columns 'Reports Processing Log.xlsx'.", file = sanity_check)
 
-for subj in df_merged_2['Subject Unique Number (00-000)']:
+for subj in df_merged_2['Record ID']:
     
     # === Update 'Batch date' column of 'Reports Processing Log.xlsx'
-    new_date = df_merged_2.loc[df_merged_2['Subject Unique Number (00-000)'] == subj, 'ExamAnalysisDate'].values[0]
-    df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Batch date'] = new_date
+    new_date = df_merged_2.loc[df_merged_2['Record ID'] == subj, 'ExamAnalysisDate'].values[0]
+    df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Batch date'] = new_date
     
     # === Update 'Result' column of 'Reports Processing Log.xlsx'
-    prev_result = df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Result'].values[0]
-    new_result = df_merged_2.loc[df_merged_2['Subject Unique Number (00-000)'] == subj, 'PatientExamResult'].values[0]
-    df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Result'] = new_result
+    prev_result = df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Result'].values[0]
+    new_result = df_merged_2.loc[df_merged_2['Record ID'] == subj, 'PatientExamResult'].values[0]
+    df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Result'] = new_result
     
     # === Update 'Physicians Name' column of 'Reports Processing Log.xlsx'
-    prev_physician = df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Physicians Name'].values[0]
-    new_physician = df_merged_2.loc[df_merged_2['Subject Unique Number (00-000)'] == subj, 'Referring MD'].values[0]
-    df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Physicians Name'] = new_physician
+    prev_physician = df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Physicians Name'].values[0]
+    new_physician = df_merged_2.loc[df_merged_2['Record ID'] == subj, 'Referring MD'].values[0]
+    df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Physicians Name'] = new_physician
     
     ### Sanity Check 8
     print(f"\nSubject: {subj}", file = sanity_check)
-    print(f"Batch date: {df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Batch date'].values[0]}", file = sanity_check)
-    print(f"Previous result: {prev_result}\nNEW RESULT: {df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Result'].values[0]}", file = sanity_check)
-    print(f"Previous physician: {prev_physician}\nNEW PHYSICIAN: {df_reports_log.loc[df_reports_log['Subject Unique Number (00-000)'] == subj, 'Physicians Name'].values[0]}", file = sanity_check)
+    print(f"Batch date: {df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Batch date'].values[0]}", file = sanity_check)
+    print(f"Previous result: {prev_result}\nNEW RESULT: {df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Result'].values[0]}", file = sanity_check)
+    print(f"Previous physician: {prev_physician}\nNEW PHYSICIAN: {df_reports_log.loc[df_reports_log['Record ID'] == subj, 'Physicians Name'].values[0]}", file = sanity_check)
 
 df_reports_log.to_excel(f"{main_dir}/Processing Log/Reports Processing Log.xlsx", index = False)
 
