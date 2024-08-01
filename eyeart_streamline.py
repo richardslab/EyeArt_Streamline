@@ -10,7 +10,8 @@ import re
 
 # ========= Select Latest EyeArt Analysis Results Spreadsheet =========
 
-main_dir = os.getcwd().removesuffix("/EyeArt_Streamline")
+main_dir = os.getcwd()
+if main_dir.endswith("/EyeArt_Streamline"): main_dir = main_dir[:-len("/EyeArt_Streamline")]
 
 # Function to extract the date from the file name
 def extract_date(file_name, type='eyenuk_results'):
@@ -180,4 +181,5 @@ redcap_cols = ['Record ID']
 redcap_cols += list(df_eyenuk_results.columns)
 redcap_cols.remove('PatientID')
 redcap_df = df_merged_3[redcap_cols]
-redcap_df.to_csv(f"{main_dir}/Results_CSV/{eyenuk_results}-REDCap", index = False)
+if eyenuk_results.endswith(".csv"): eyenuk_results = eyenuk_results[:-len(".csv")]
+redcap_df.to_csv(f"{main_dir}/Results_CSV/{eyenuk_results}-REDCap.csv", index = False)

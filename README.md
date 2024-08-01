@@ -33,7 +33,7 @@ Once your EyeArt analysis results have been exported into a nice and clean .csv 
 
 4. Navigate to your working directory (`Eyenuk Reports`) and set up the following Conda environment:
 ```
-cd PATH/TO/Eyenuk Reports
+cd PATH/TO/Eyenuk Reports/EyeArt_Streamline
 conda env create -f environment.yml
 conda activate eyeart_env
 ```
