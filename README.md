@@ -3,7 +3,7 @@
 ## What?
 Once your EyeArt analysis results have been exported into a nice and clean .csv (`Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv`), it only takes one line of code to:
 
-1) Update your spreadsheet for ophthamology consultation referrals letters (`Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_????.csv`);
+1) Update your spreadsheet for ophthamology consultation referrals letters (from `Eyenuk Reports/Processing Log/BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_NNNN.csv` to `Eyenuk Reports/Processing Log/DATA_LABELS_YYYY-MM-DD_DATA_LABELS.xlsx`);
    
 2) Update your EyeArt analysis result tracker (`Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`) (and duplicate the previous copy as `Eyenuk Reports/Processing Log/Reports Processing Log-initial_file_YYYY-MM-DD.xlsx`);
    
@@ -22,7 +22,7 @@ Once your EyeArt analysis results have been exported into a nice and clean .csv 
      │      └─── environment.yml
      │      └─── eyeart_streamline.py
      ├───Processing Log
-     │      └─── DDMMMYYYYs_DATA_LABELS_YYYY-MM-DD_NNNN.csv
+     │      └─── BioPortal-Consultletters_DATA_LABELS_YYYY-MM-DD_NNNN.csv
      │      └─── Reports Processing Log.xlsx
      └───Results_CSV
             └─── EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv 
@@ -45,7 +45,7 @@ conda activate eyeart_env
 python eyeart_streamline.py
 ```
 
-## Note: A Few Variable Naming Conventions
+## Note: Which Files Contain What Columns
 
 ### `Eyenuk Reports/Results_CSV/EyenukAnalysisResults_YYYYMMDD_HHhMMmSSs.csv`
 
@@ -62,4 +62,4 @@ _Columns_:
 ### `Eyenuk Reports/Processing Log/Reports Processing Log.xlsx`
 
 _Columns_:
-* `Subject Unique Number (00-000)`: same as `Record ID` above (number assigned to patient for the study for anonymization purposes).
+* `Record ID`: number assigned to patient for the study for anonymization purposes.
