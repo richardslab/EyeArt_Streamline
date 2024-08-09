@@ -10,8 +10,8 @@ import re
 
 # ========= Select Latest EyeArt Analysis Results Spreadsheet =========
 
-main_dir = os.getcwd()
-if main_dir.endswith("/EyeArt_Streamline"): main_dir = main_dir[:-len("/EyeArt_Streamline")]
+main_dir = ".." #os.getcwd()
+#if main_dir.endswith("/EyeArt_Streamline"): main_dir = main_dir[:-len("/EyeArt_Streamline")]
 
 # Function to extract the date from the file name
 def extract_date(file_name, type='eyenuk_results'):
